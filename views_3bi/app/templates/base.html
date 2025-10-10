@@ -1,0 +1,60 @@
+{% load static %}
+{% load humanize %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cursos Superiores</title>
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cards.css' %}">
+</head>
+<body>
+    <!-- CABECALHO DA PAGINA -->
+    <header>
+        <h2>.: Cursos Superiores</h2> 
+        <!-- <span style="color: yellow;font-style: italic;">v1.0</span>  -->
+    </header>
+    <!-- MENU LATERAL DE NAVEGACAO -->
+    <nav>
+        <ul>
+            <li>  <a href="{% url 'home' %}">Home</a>  </li>
+            <li>  <a href="{% url 'dados_gerais' %}">Dados Gerais</a> </li>
+            <li>  <a href="{% url 'campi_uf' %}">Campi por UF</a> </li>
+            <li>  <a href="{% url 'cursos_por_area' %}">Cursos por Área</a> </li>
+            <li>  <a href="{% url 'ranking_municipio' %}">Ranking por Município</a> </li>
+            <li>  <a href="{% url 'ranking_ofertas_uf' %}">Ranking Ofertas por UF</a> </li  >
+            
+            <!-- Separador para as views do exercício -->
+            <li style="border-top: 2px solid #ccc; margin-top: 10px; padding-top: 10px;">
+                <strong style="color: #0066cc;">EXERCÍCIO VIEWS:</strong>
+            </li>
+            <li>  <a href="{% url 'view_ufs' %}">1. Lista de UFs</a> </li>
+            <li>  <a href="{% url 'view_cursos_populares' %}">2. Cursos Populares</a> </li>
+            <li>  <a href="{% url 'view_enade_por_area_curso' %}">3. ENADE por Área</a> </li>
+        </ul>
+    </nav>
+    <!-- CONTEUDO DAS PAGINAS -->
+    <main>
+        <!-- Este bloco será utilizado para exiir o título da página -->
+        <div id="titulo_pagina">
+            {% block titulo_pagina %}
+                Título da Página
+            {% endblock %}            
+        </div>
+        <!-- Exibe mensagem de ERRO, caso tenha ocorrido algum -->
+        {% if ERRO %}
+            <h3 class="erro">ERRO: {{ERRO}}</h3>
+        {% endif %}            
+        <!-- Este bloco será utilizado para inserir o conteúdo das páginas. -->
+        <div id="conteudo">
+            {% block conteudo %}
+                Conteúdo da Página
+            {% endblock %}
+        </div>
+    </main>
+</body>
+
+
+
+

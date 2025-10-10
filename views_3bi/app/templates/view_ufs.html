@@ -1,0 +1,27 @@
+{% extends "base.html" %} 
+{% load humanize %}
+
+{% block titulo_pagina %}
+<h2>Lista de UFs - Exercício 1</h2>
+{% endblock %} 
+
+{% block conteudo %}
+<div class="dashboard">
+    <div class="card">
+        <h3>Estados (UF)</h3>
+        <p>Valores únicos do campo UF da tabela Municípios, ordenados alfabeticamente.</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-top: 20px;">
+            {% for item in data %}
+                <div style="background: #f0f8ff; padding: 10px; border-radius: 5px; text-align: center; border: 1px solid #ddd;">
+                    <strong>{{ item.0 }}</strong>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <p style="margin-top: 20px; font-style: italic;">
+            Total de UFs encontradas: {{ data|length }}
+        </p>
+    </div>
+</div>
+{% endblock %}

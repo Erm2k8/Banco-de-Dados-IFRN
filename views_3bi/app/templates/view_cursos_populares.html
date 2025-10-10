@@ -1,0 +1,44 @@
+{% extends "base.html" %} 
+{% load humanize %}
+
+{% block titulo_pagina %}
+<h2>Cursos Populares - Exercício 2</h2>
+{% endblock %} 
+
+{% block conteudo %}
+<div class="dashboard">
+    <div class="card">
+        <h3>Cursos com >= 2.000 Ofertas</h3>
+        <p>Cursos ordenados por quantidade de ofertas (decrescente).</p>
+        
+        {% if data %}
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                <thead>
+                    <tr style="background-color: #f0f8ff; border: 1px solid #ddd;">
+                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Posição</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Nome do Curso</th>
+                        <th style="padding: 12px; text-align: center; border: 1px solid #ddd;">Quantidade de Ofertas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in data %}
+                    <tr style="border: 1px solid #ddd;">
+                        <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">{{ forloop.counter }}°</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">{{ item.0 }}</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; text-align: center; color: #2e7d32; font-weight: bold;">{{ item.1|intcomma }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p style="color: #666; font-style: italic; margin-top: 20px;">
+                Nenhum curso encontrado com 2.000 ou mais ofertas.
+            </p>
+        {% endif %}
+        
+        <p style="margin-top: 20px; font-style: italic;">
+            Total de cursos encontrados: {{ data|length }}
+        </p>
+    </div>
+</div>
+{% endblock %}
